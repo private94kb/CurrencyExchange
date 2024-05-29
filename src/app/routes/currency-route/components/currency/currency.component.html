@@ -1,0 +1,40 @@
+<div *ngIf="(currency$ | async) as currencies" class="currency__wrapper">
+  <div class="currency__title">
+    <mat-form-field class="no-margin" appearance="outline">
+      <mat-label>Base coin</mat-label>
+      <mat-select [(ngModel)]="baseCoin" (selectionChange)="getCurrency()">
+        <mat-option *ngFor="let currency of currencies.conversion_rates | keyvalue" [value]="currency.key">
+          {{ currency.key }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="no-margin" appearance="outline">
+      <mat-label>Find currency</mat-label>
+      <input matInput type="text" [(ngModel)]="filter">
+      <button *ngIf="filter" matSuffix mat-icon-button aria-label="Clear" (click)="filter=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <div class="currency__cards">
+    <mat-card *ngFor="let currency of (currencies.conversion_rates | keyvalue | currencyFilter: filter)">
+      <mat-card-title>Coin: {{ currency.key }}</mat-card-title>
+      <mat-card-content class="currency__cards-content">
+        <span>Base coin:
+          <b class="currency__cards-mark">{{ currencies.base_code }}</b>
+        </span>
+        <span>Conversion rates:
+          <b class="currency__cards-mark">{{ currency.value | number }}</b>
+        </span>
+        <span>Currencies last update:
+          <b class="currency__cards-mark">{{ currencies.time_last_update_utc | date }}</b>
+        </span>
+        <span>Currencies next update:
+          <b class="currency__cards-mark">{{ currencies.time_next_update_utc | date }}</b>
+        </span>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

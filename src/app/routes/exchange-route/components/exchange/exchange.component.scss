@@ -1,0 +1,51 @@
+.exchange {
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__card {
+    padding: 1rem;
+    width: 20rem;
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    > .mat-card-title {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &__control {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  &__result {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: 3rem;
+    padding-top: 0.5rem;
+  }
+
+  &__plug {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #69f0ae;
+  }
+
+  &__mark {
+    color: #69f0ae;
+  }
+}

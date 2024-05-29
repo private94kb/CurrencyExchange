@@ -1,0 +1,11 @@
+{
+  "/api/*": {
+    "target": "https://v6.exchangerate-api.com/v6/d79cc0f43aa193494b55facf",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "info",
+    "pathRewrite": {
+      "^/api/": ""
+    }
+  }
+}

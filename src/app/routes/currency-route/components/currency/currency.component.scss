@@ -1,0 +1,46 @@
+.currency {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    height: calc(100% - 5rem);
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  &__title {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+    gap: 1rem;
+    width: 100%;
+    overflow: auto;
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+
+    &-mark {
+      color: #69f0ae;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .currency__title {
+    flex-direction: column;
+    > mat-form-field {
+        width: 100%;
+    }
+  }
+}

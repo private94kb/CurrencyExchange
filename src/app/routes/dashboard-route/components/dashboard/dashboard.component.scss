@@ -1,0 +1,23 @@
+::ng-deep:host {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.dashboard {
+  &__container {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  &__toolbar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%
+  }
+
+  &__content {
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+}

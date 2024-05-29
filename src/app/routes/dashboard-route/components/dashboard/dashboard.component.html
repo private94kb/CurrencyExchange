@@ -1,0 +1,31 @@
+<div class="dashboard__container">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row class="dashboard__toolbar">
+      <span>Currency Exchange</span>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <a mat-menu-item routerLink="">
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
+        </a>
+        <a mat-menu-item routerLink="exchange">
+          <mat-icon>compare_arrows</mat-icon>
+          <span>Exchange</span>
+        </a>
+        <a mat-menu-item routerLink="currency">
+          <mat-icon>attach_money</mat-icon>
+          <span>Currency</span>
+        </a>
+      </mat-menu>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="dashboard__content" autosize>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+

@@ -1,0 +1,72 @@
+<div *ngIf="(currency$ | async) as currencies" class="exchange__wrapper">
+  <mat-card class="exchange__card">
+    <mat-card-title>Exchange</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="conversionForm" class="exchange__card-content">
+          <mat-form-field class="no-margin exchange__control" appearance="outline">
+            <mat-label>Find currency</mat-label>
+            <input formControlName="amount" matInput type="number">
+          </mat-form-field>
+
+          <mat-form-field class="no-margin exchange__control" appearance="outline">
+            <mat-label>Base coin</mat-label>
+            <input type="text" matInput formControlName="baseCurrency" [matAutocomplete]="baseCoin">
+            <mat-autocomplete #baseCoin="matAutocomplete">
+              <mat-option *ngFor="let currency of filteredBaseCoin" [value]="currency.key">
+                {{ currency.key }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+          <mat-form-field class="no-margin exchange__control" appearance="outline">
+            <mat-label>External coin</mat-label>
+            <input type="text" matInput formControlName="quoteCurrency" [matAutocomplete]="externalCoin">
+            <mat-autocomplete #externalCoin="matAutocomplete">
+              <mat-option *ngFor="let currency of filteredExternalCoin" [value]="currency.key">
+                {{ currency.key }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+
+        <div class="exchange__result">
+          <ng-container *ngIf="conversion$ | async as conversion; else conversionPlug">
+            <span>
+              From:
+              <b class="exchange__mark">
+                {{ conversionForm.get("amount")?.value }}
+                {{ conversion?.base_code }}
+              </b>
+            </span>
+            <span>
+              To:
+              <b class="exchange__mark">
+                {{ conversion?.conversion_result | number: '.2-2' }}
+                {{ conversion?.target_code }}
+              </b>
+            </span>
+            <span>
+              Conversion rate:<b class="exchange__mark">{{ conversion.conversion_rate | number: '.2-2' }}</b>
+            </span>
+          </ng-container>
+        </div>
+      </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-button type="button" (click)="onResetFromClick()">Reset</button>
+        <button
+          mat-flat-button
+          color="primary"
+          type="button"
+          [disabled]="conversionForm.invalid"
+          (click)="onSubmitFormClick()"
+        >
+          Apply
+        </button>
+      </mat-card-actions>
+  </mat-card>
+</div>
+
+
+<ng-template #conversionPlug>
+  <div class="exchange__plug">Please select value for conversion</div>
+</ng-template>
